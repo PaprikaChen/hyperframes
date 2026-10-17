@@ -183,6 +183,8 @@ export interface StudioApiAdapter {
     bufferSize?: string;
     videoFrameFormat?: "auto" | "jpg" | "png";
     hdrMode?: "auto" | "force-hdr" | "force-sdr";
+    /** "444" opts an SDR MP4 render into full-resolution chroma (PNG capture, yuv444p). */
+    chromaSubsampling?: "420" | "444";
     jobId: string;
     /**
      * The triggering browser profile has telemetry disabled (localStorage
