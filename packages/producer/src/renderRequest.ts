@@ -58,6 +58,7 @@ export interface RenderRequestOptions {
   videoFrameFormat?: VideoFrameFormat;
   hdrMode?: RenderConfig["hdrMode"];
   chromaSubsampling?: RenderConfig["chromaSubsampling"];
+  pageMotionBlur?: RenderConfig["pageMotionBlur"];
   variables?: Record<string, unknown>;
   outputResolution?: CanvasResolution;
   outputResolutionAspectAgnostic?: boolean;
@@ -182,6 +183,7 @@ function assertRequestOptionScalars(options: Record<string, unknown>): void {
   assertOptionalEnum(options, "strictness", ["strict", "best-effort"]);
   assertOptionalEnum(options, "hdrMode", ["auto", "force-hdr", "force-sdr"]);
   assertOptionalEnum(options, "chromaSubsampling", ["420", "444"]);
+  assertOptionalEnum(options, "pageMotionBlur", ["off"]);
   if (options.videoFrameFormat !== undefined && !isVideoFrameFormat(options.videoFrameFormat)) {
     throw new Error("Render request videoFrameFormat is invalid");
   }

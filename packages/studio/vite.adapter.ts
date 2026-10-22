@@ -357,6 +357,7 @@ export function createViteAdapter(
             ...(opts.hdrMode ? { hdrMode: opts.hdrMode } : {}),
             ...(opts.chromaSubsampling ? { chromaSubsampling: opts.chromaSubsampling } : {}),
             ...(opts.useGpu ? { useGpu: true } : {}),
+            ...(opts.pageMotionBlur ? { pageMotionBlur: opts.pageMotionBlur } : {}),
           });
           const onProgress = (j: { progress: number; currentStage?: string }) => {
             state.progress = j.progress;

@@ -27,11 +27,11 @@ import {
   existsSync,
   mkdirSync,
   copyFileSync,
-  cpSync,
   writeFileSync,
   readFileSync,
   readdirSync,
 } from "node:fs";
+import { copyDirSync } from "../utils/copyDir.js";
 import { resolve, basename, join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawn } from "node:child_process";
@@ -575,7 +575,7 @@ async function scaffoldProject(
   // build toolchain should not prevent the remote fetch fallback.
   const templateDir = getStaticTemplateDir(templateId);
   if (existsSync(join(templateDir, "index.html"))) {
-    cpSync(templateDir, destDir, { recursive: true });
+    copyDirSync(templateDir, destDir);
   } else {
     await fetchRemoteTemplate(templateId, destDir);
   }
@@ -758,7 +758,7 @@ export default defineCommand({
     skill: {
       type: "string",
       description:
-        "Owning authoring workflow slug (e.g. product-launch-video). Stamped into " +
+        "Owning authoring skill slug (e.g. hyperframes). Stamped into " +
         "hyperframes.json so every render of this project is attributed to it on " +
         "anonymous telemetry, without re-passing --skill on each render. Ignored unless it is a slug.",
     },
